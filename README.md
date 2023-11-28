@@ -1,4 +1,4 @@
-API rate limiters in golang  
+# API rate limiters in golang  
 
 Project provids implementation of sliding window and token bucket algorithm
 
