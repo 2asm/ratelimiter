@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	limiter1 := slidingwindow.NewLimiter(2, time.Microsecond*1000)
+	limiter1 := slidingwindow.NewLimiter(2, time.Millisecond*1000)
 	log.Printf("%v\n", limiter1.Allow())
 	log.Printf("%v\n", limiter1.Allow())
 	log.Printf("%v\n", limiter1.Allow())
