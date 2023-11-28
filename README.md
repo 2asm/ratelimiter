@@ -4,7 +4,7 @@ Project provids implementation of sliding window and token bucket algorithm
 
 ## Quick start
 
-``` Console
+``` Golang
 func main() {
     limiter1 := slidingwindow.NewLimiter(2, time.Microsecond*1000)
     log.Printf("%v\n", limiter1.Allow())
