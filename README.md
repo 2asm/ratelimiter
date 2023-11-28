@@ -1,6 +1,6 @@
 # API rate limiters in golang  
 
-Project provids implementation of sliding window and token bucket algorithm
+Project provides implementation of sliding window and token bucket algorithm
 
 ## Quick start
 
