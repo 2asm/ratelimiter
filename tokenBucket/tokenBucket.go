@@ -64,6 +64,7 @@ func (lim *Limiter) Burst() int {
 // advance requires that lim.mu is held.
 func (lim *Limiter) advance(t time.Time) float64 {
 	last := lim.last
+    // time skew
 	if t.Before(last) {
 		last = t
 	}
