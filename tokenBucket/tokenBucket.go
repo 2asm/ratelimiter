@@ -1,4 +1,4 @@
-package tokenbucket 
+package tokenbucket
 
 import (
 	"log"
@@ -24,10 +24,11 @@ import (
 // They differ in their behavior when no token is available.
 // If no token is available, Allow returns false.
 type Limiter struct {
-    // id 
-	mu     sync.Mutex
-	limit  float64
-	burst  int
+	// id
+	mu    sync.Mutex
+	limit float64
+	burst int
+	// bucket size
 	tokens float64
 	// last is the last time the limiter's tokens field was updated
 	last time.Time
@@ -64,7 +65,7 @@ func (lim *Limiter) Burst() int {
 // advance requires that lim.mu is held.
 func (lim *Limiter) advance(t time.Time) float64 {
 	last := lim.last
-    // time skew
+	// time skew
 	if t.Before(last) {
 		last = t
 	}
@@ -92,7 +93,7 @@ func (lim *Limiter) Allow1(t time.Time) bool {
 	defer lim.mu.Unlock()
 	tokens := lim.advance(t)
 
-    // consume one token
+	// consume one token
 	tokens -= 1
 
 	if tokens < 0 {

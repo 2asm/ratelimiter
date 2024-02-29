@@ -1,4 +1,4 @@
-package leakyBucket 
+package leakyBucket
 
 import (
 	"log"
@@ -8,10 +8,10 @@ import (
 
 // rate events per second
 type Limiter struct {
-	mu          sync.Mutex
-	rate        float64
+	mu   sync.Mutex
+	rate float64
 
-    // wait duration for a event
+	// wait duration for a event
 	per_event   time.Duration
 	bucket_size int64
 
