@@ -20,13 +20,8 @@ type Limiter struct {
 	burst      int
 	last_key   string
 	tokens_key string
-	// tokens float64 // stored in redis as id_tokenbucket_redis_tokens
-	// last is the last time the limiter's tokens field was updated (Unix Nano)
-	// last int64 // stored in redis as id_tokenbucket_redis_last
 }
 
-// NewLimiter returns a new Limiter that allows events up to rate r and permits
-// bursts of at most b tokens.
 func NewLimiter(user_id int64, r float64, b int, client *redis.Client) *Limiter {
 	last_key := fmt.Sprintf("%v_tokenbucket_redis_last", user_id)
 	tokens_key := fmt.Sprintf("%v_tokenbucket_redis_tokens", user_id)
@@ -50,10 +45,6 @@ func (lim *Limiter) Limit() float64 {
 	return lim.limit
 }
 
-// Burst returns the maximum burst size. Burst is the maximum number of tokens
-// that can be consumed in a single call to Allow, Reserve, or Wait, so higher
-// Burst values allow more events to happen at once.
-// A zero Burst allows no events, unless limit == Inf.
 func (lim *Limiter) Burst() int {
 	return lim.burst
 }

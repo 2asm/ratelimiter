@@ -19,8 +19,6 @@ type Limiter struct {
 	last time.Time
 }
 
-// NewLimiter returns a new Limiter that allows events up to rate r and permits
-// bucket_size of b
 func NewLimiter(r float64, b int64) *Limiter {
 	if r == 0.0 {
 		log.Fatalf("Rate can't be zero")
@@ -33,14 +31,12 @@ func NewLimiter(r float64, b int64) *Limiter {
 	}
 }
 
-// Rate returns the maximum overall event rate.
 func (lim *Limiter) Rate() float64 {
 	lim.mu.Lock()
 	defer lim.mu.Unlock()
 	return lim.rate
 }
 
-// Allow reports whether an event may happen now.
 func (lim *Limiter) Allow() (time.Duration, bool) {
 	return lim.Allow1(time.Now())
 }
